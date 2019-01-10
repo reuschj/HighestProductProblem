@@ -29,9 +29,10 @@ class HighestProductOfTwoNumbersProblem {
         let reduced = (number * precision).rounded() / precision
         return reduced.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", reduced) : String(reduced)
     }
-    private var results: (Double, [TwoNumbersResolver], [TwoNumbersResolver])?
+    private var results: (Double, [NumberPairing], [NumberPairing])?
     
-    // Init
+    // Initializers ---------------------------------------------------------- /
+    
     init(addingmaxResults initialSum: Double, withPrecision precision: Double) {
         self.initialSum = initialSum
         self.precision = precision
@@ -44,13 +45,14 @@ class HighestProductOfTwoNumbersProblem {
         self.init(addingmaxResults: initialSum, withPrecision: 0.1)
     }
     
-    // Methods
-    private func getResults() -> (Double, [TwoNumbersResolver], [TwoNumbersResolver]) {
+    // Methods --------------------------------------------------------------- /
+    
+    private func getResults() -> (Double, [NumberPairing], [NumberPairing]) {
         var bestResult: Double = 0
-        var winnerList: Array<TwoNumbersResolver> = []
-        var otherList: Array<TwoNumbersResolver> = []
+        var winnerList: Array<NumberPairing> = []
+        var otherList: Array<NumberPairing> = []
         for number in searchRange {
-            let thisResult = TwoNumbersResolver(oneNumberIs: number, addingmaxResults: initialSum)
+            let thisResult = NumberPairing(oneNumberIs: number, addingUpTo: initialSum)
             if thisResult.result > bestResult {
                 bestResult = thisResult.result
                 winnerList.removeAll()
@@ -73,7 +75,7 @@ class HighestProductOfTwoNumbersProblem {
         return "Best Result:\n\(results!.0)\n\(line)\n"
     }
     
-    func getWinners() -> [TwoNumbersResolver]? {
+    func getWinners() -> [NumberPairing]? {
         return results!.1
     }
     
@@ -86,7 +88,7 @@ class HighestProductOfTwoNumbersProblem {
         return output
     }
     
-    func getOtherResults() -> [TwoNumbersResolver] {
+    func getOtherResults() -> [NumberPairing] {
         return results!.2
     }
     
