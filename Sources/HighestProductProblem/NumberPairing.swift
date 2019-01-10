@@ -56,19 +56,19 @@ struct NumberPairing: Equatable, Comparable {
     
     // Creates a long report with both numbers, the product, difference and the result
     func longReport() -> String {
-        let line = String(repeating: "-", count: 18) + "\n"
+        let line = String(repeating: "-", count: 18)
         let firstRounded = roundNumberToString(from: firstNumber)
         let secondRounded = roundNumberToString(from: secondNumber)
         let productRounded = roundNumberToString(from: product)
         let differnceRounded = roundNumberToString(from: difference)
         let resultRounded = roundNumberToString(from: result, withPrecision: 100_000)
         return """
-            Numbers: \(firstRounded) and \(secondRounded)\n
+            Numbers: \(firstRounded) and \(secondRounded)
             \(line)
-            Product: \(productRounded)\n
-            Difference: \(differnceRounded)\n
+            Product: \(productRounded)
+            Difference: \(differnceRounded)
             \(line)
-            Result: \(resultRounded)\n
+            Result: \(resultRounded)
             """
     }
     
