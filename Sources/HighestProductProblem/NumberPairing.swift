@@ -1,5 +1,5 @@
 //
-//  TwoNumbersResolver.swift
+//  NumberPairing.swift
 //  HighestProductProblem
 //
 //  Created by Justin Reusch on 1/9/19.
@@ -56,7 +56,6 @@ struct NumberPairing: Equatable, Comparable {
     
     // Creates a long report with both numbers, the product, difference and the result
     func longReport() -> String {
-        let line = String(repeating: "-", count: 18)
         let firstRounded = roundNumberToString(from: firstNumber)
         let secondRounded = roundNumberToString(from: secondNumber)
         let productRounded = roundNumberToString(from: product)
@@ -64,11 +63,11 @@ struct NumberPairing: Equatable, Comparable {
         let resultRounded = roundNumberToString(from: result, withPrecision: 100_000)
         return """
             Numbers: \(firstRounded) and \(secondRounded)
-            \(line)
+            \(lineMedium)
             Product: \(productRounded)
             Difference: \(differnceRounded)
-            \(line)
-            Result: \(resultRounded)
+            \(lineMedium)
+            Result: \(resultRounded)\n
             """
     }
     

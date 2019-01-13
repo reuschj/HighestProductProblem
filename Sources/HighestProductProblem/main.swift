@@ -8,7 +8,7 @@
 
 import Foundation
 
-let twoNumbersProblem = HighestProductOfTwoNumbersProblem(addingmaxResults: 8, withPrecision: 0.1)
+let twoNumbersProblem = NumberPairingProblem(addingmaxResults: 8, withPrecision: 0.1)
 print(twoNumbersProblem.introString)
 print(twoNumbersProblem.getBestResultString())
 print(twoNumbersProblem.getWinnerString())

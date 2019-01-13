@@ -8,4 +8,12 @@
 
 import Foundation
 
+// The default version of this problem is two numbers that add to 8
 let defaultSum: Double = 8
+
+// Lines of various length
+fileprivate let lineChar = "-"
+fileprivate let lineBaseLength = 9
+let lineShort = String(repeating: lineChar, count: lineBaseLength * 1)
+let lineMedium = String(repeating: lineChar, count: lineBaseLength * 2)
+let lineLong = String(repeating: lineChar, count: lineBaseLength * 3)

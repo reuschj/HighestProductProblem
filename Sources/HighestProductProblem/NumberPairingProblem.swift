@@ -1,5 +1,5 @@
 //
-//  HighestProductOfTwoNumbersProblem.swift
+//  NumberPairingProblem.swift
 //  HighestProductProblem
 //
 //  Created by Justin Reusch on 1/9/19.
@@ -11,18 +11,17 @@ import Foundation
 /**
   A class to define a problem by which takes two numbers that sum to a given amount (default to 8). The problem must find the largest number combination (determined by multiplying the difference by the product of the two numbers)
  */
-class HighestProductOfTwoNumbersProblem {
-    let initialSum: Double
+class NumberPairingProblem {
+    let sumOfNumberPairing: Double
     let precision: Double
-    private let line = String(repeating: "-", count: 18)
     var introString: String {
         get {
-            return "Problem:\nFind two numbers that add up to \(roundNum(initialSum)), such that the product multiplied by the difference produces the largest possible value.\n"
+            return "Problem:\nFind two numbers that add up to \(roundNum(sumOfNumberPairing)), such that the product multiplied by the difference produces the largest possible value.\n"
         }
     }
-    private var searchRange: StrideTo<Double> {
+    private var searchRange: StrideThrough<Double> {
         get {
-            return stride(from: 0.0, to: initialSum / 2 + precision, by: precision)
+            return stride(from: 0.0, through: sumOfNumberPairing / 2, by: precision)
         }
     }
     private func roundNum(_ number: Double, precision: Double = 1000) -> String {
@@ -34,7 +33,7 @@ class HighestProductOfTwoNumbersProblem {
     // Initializers ---------------------------------------------------------- /
     
     init(addingmaxResults initialSum: Double, withPrecision precision: Double) {
-        self.initialSum = initialSum
+        self.sumOfNumberPairing = initialSum
         self.precision = precision
         self.results = self.getResults()
     }
@@ -52,7 +51,7 @@ class HighestProductOfTwoNumbersProblem {
         var winnerList: Array<NumberPairing> = []
         var otherList: Array<NumberPairing> = []
         for number in searchRange {
-            let thisResult = NumberPairing(oneNumberIs: number, addingUpTo: initialSum)
+            let thisResult = NumberPairing(oneNumberIs: number, addingUpTo: sumOfNumberPairing)
             if thisResult.result > bestResult {
                 bestResult = thisResult.result
                 winnerList.removeAll()
@@ -72,7 +71,7 @@ class HighestProductOfTwoNumbersProblem {
     }
     
     func getBestResultString() -> String {
-        return "Best Result:\n\(results!.0)\n\(line)\n"
+        return "Best Result:\n\(results!.0)\n\(lineMedium)\n"
     }
     
     func getWinners() -> [NumberPairing]? {
@@ -84,7 +83,7 @@ class HighestProductOfTwoNumbersProblem {
         for winner in results!.1 {
             output += "\n\(winner.shortReport())"
         }
-        output += "\n\(line)\n"
+        output += "\n\(lineMedium)\n"
         return output
     }
     
