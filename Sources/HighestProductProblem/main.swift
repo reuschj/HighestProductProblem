@@ -8,10 +8,8 @@
 
 import Foundation
 
-let twoNumbersProblem = NumberPairingProblem(addingmaxResults: 8, withPrecision: 0.1)
-print(twoNumbersProblem.introString)
-print(twoNumbersProblem.getBestResultString())
-print(twoNumbersProblem.getWinnerString())
-print(twoNumbersProblem.getOtherResultsString())
+// TODO: Allow to accept input from terminal
+let twoNumbersProblem = NumberPairingProblem(addingmaxResults: 8)
+twoNumbersProblem.printAllResults()
 
 

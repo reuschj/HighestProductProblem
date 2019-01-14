@@ -87,13 +87,6 @@ struct NumberPairing: Equatable, Comparable {
         return nonNegative > sumOfNumbers ? sumOfNumbers : nonNegative
     }
     
-    // Drops the trailing zero doubles when outputing to string
-    // For example 16.0 -> "16" or 12.20 to "12.2"
-    private func roundNumberToString(from number: Double, withPrecision precision: Double = 1_000) -> String {
-        let reduced = (number * precision).rounded() / precision
-        return reduced.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", reduced) : String(reduced)
-    }
-    
     // Static Methods -------------------------------------------------------- /
     
     // Method for checking equality
