@@ -9,8 +9,9 @@
 import Foundation
 
 /**
-  A class to define a problem by which takes two numbers that sum to a given amount (default to 8). The problem must find the largest number combination (determined by multiplying the difference by the product of the two numbers)
- */
+  * A class to define a problem by which takes two numbers that sum to a given amount (default to 8).
+  * The problem must find the largest number combination (determined by multiplying the difference by the product of the two numbers)
+  */
 class NumberPairingProblem {
     let sumOfNumberPairing: Double
     var introString: String {
@@ -69,6 +70,36 @@ class NumberPairingProblem {
     
     // TODO: This will be updated to be a recursive method
     private func getResults() -> (Double, [NumberPairing], [NumberPairing]) {
+        // Psudocode...
+        // ------------------------------------------
+        // Define variable to hold best result as optional NumberPairing
+        // Define array holding best results
+        // Define array holding other results
+        // Start recusive function starting from 0.0 to sumOfNumberPairing / 2 by sumOfNumberPairing / 2
+            // Define variable to hold local best result as optional NumberPairing
+            // Define array holding local best results
+            // For each in range...
+                // Make new NumberPairing instance
+                // Unwrap best local result
+                    // If nil (no best result yet)
+                        // Set to variable holding best result
+                        // Clear best result array
+                        // Add to list of best results
+                    // If there is a NumberPairing:
+                        // If better than local best result
+                            // Set to variable holding best result
+                            // Clear best result array
+                            // Add to array of best results
+                        // If equal to local best result:
+                            // Add to array of best results
+                        // Else:
+                            // Add to array of other results
+                // If greater than overall best result (or overall is still nil)
+                    // Call recusive function again with narrower range (expand on this later)
+                // Else
+                    // Return the current overall result
+        
+        
         let precision = 0.1
         var searchRange: StrideThrough<Double> {
             return stride(from: 0.0, through: sumOfNumberPairing / 2, by: precision)

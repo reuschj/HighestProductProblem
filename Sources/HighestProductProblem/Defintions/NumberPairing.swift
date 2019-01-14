@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- * A structure that stores two numbers that sum to a given amount. Finds the product, the difference and the result of muliplying the difference and the product.
+ * A structure that stores two numbers that sum to a given amount.
+ * Finds the product, the difference and the result of muliplying the difference and the product.
  */
-
 struct NumberPairing: Equatable, Comparable {
     private var storedNumber: Double
     let sumOfNumbers: Double
