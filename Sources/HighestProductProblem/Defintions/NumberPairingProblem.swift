@@ -72,11 +72,13 @@ class NumberPairingProblem {
     private func getResults() -> (Double, [NumberPairing], [NumberPairing]) {
         // Psudocode...
         // ------------------------------------------
-        // Define variable to hold best result as Double
+        // Define a new NumberPairing that will always have a zero result (used for initial high value)
+        // Define variable to hold best result as NumberPairing (init with NumberPairing with zero value)
         // Define array holding best results
         // Define array holding other results
+        // Define lower bounds and upper bounds constants to hold initial 0.0 and sumOfNumberPairing / 2 (these will be our accetable bounds... we need to check that nothing go outside these bounds when refining)
         // Start recusive function starting from 0.0 to sumOfNumberPairing / 2 by sumOfNumberPairing / 2
-            // Define variable to hold local best result as Double
+            // Define variable to hold local best result as NumberPairing (init with NumberPairing with zero value)
             // Define array holding local best results
             // For each in range...
                 // Make new NumberPairing instance
@@ -89,8 +91,13 @@ class NumberPairingProblem {
                         // Add to array of best results
                     // Else:
                         // Add to array of other results
-                // If greater than overall best result (or overall is still nil)
-                    // Call recusive function again with narrower range (expand on this later)
+                // If local best result is greater than overall best result
+                    // New start is .firstNumber - (current precision / 2) of best result NumberPairing
+                    // If new start is lower than lower bounds, snap it to lower bounds
+                    // New end is .firstNumber + (current precision / 2) of best result NumberPairing
+                    // If new end is higher than upper bounds, snap it to upper bounds
+                    // New precision is current precision / 2
+                    // Call recusive function again with narrower range as defined above
                 // Else
                     // Return the current overall result
         
