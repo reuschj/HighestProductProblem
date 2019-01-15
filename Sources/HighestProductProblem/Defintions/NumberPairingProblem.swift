@@ -72,28 +72,23 @@ class NumberPairingProblem {
     private func getResults() -> (Double, [NumberPairing], [NumberPairing]) {
         // Psudocode...
         // ------------------------------------------
-        // Define variable to hold best result as optional NumberPairing
+        // Define variable to hold best result as Double
         // Define array holding best results
         // Define array holding other results
         // Start recusive function starting from 0.0 to sumOfNumberPairing / 2 by sumOfNumberPairing / 2
-            // Define variable to hold local best result as optional NumberPairing
+            // Define variable to hold local best result as Double
             // Define array holding local best results
             // For each in range...
                 // Make new NumberPairing instance
-                // Unwrap best local result
-                    // If nil (no best result yet)
+                // If there is a NumberPairing:
+                    // If better than local best result
                         // Set to variable holding best result
                         // Clear best result array
-                        // Add to list of best results
-                    // If there is a NumberPairing:
-                        // If better than local best result
-                            // Set to variable holding best result
-                            // Clear best result array
-                            // Add to array of best results
-                        // If equal to local best result:
-                            // Add to array of best results
-                        // Else:
-                            // Add to array of other results
+                        // Add to array of best results
+                    // If equal to local best result:
+                        // Add to array of best results
+                    // Else:
+                        // Add to array of other results
                 // If greater than overall best result (or overall is still nil)
                     // Call recusive function again with narrower range (expand on this later)
                 // Else
