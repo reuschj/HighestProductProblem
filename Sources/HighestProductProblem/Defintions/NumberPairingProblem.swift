@@ -70,6 +70,18 @@ class NumberPairingProblem {
     
     // TODO: This will be updated to be a recursive method
     private func getResults() -> (Double, [NumberPairing], [NumberPairing]) {
+        let initialHighValue = NumberPairing(oneNumberIs: 0, addingUpTo: sumOfNumberPairing)
+        let lowerBounds: Double = 0
+        let upperBounds: Double = sumOfNumberPairing / 2
+        var overallBestResult: NumberPairing = initialHighValue
+        var bestResults = [NumberPairing]()
+        var otherResults = [NumberPairing]()
+//        func getHighestResultOfSequence(from lowValue: Double, to highValue: Double, by precision: Double) -> NumberPairing {
+//            var bestResultFromSequence: NumberPairing = initialHighValue
+//            var bestResultsFromSequence = [NumberPairing]()
+//
+//        }
+        
         // Psudocode...
         // ------------------------------------------
         // Define a new NumberPairing that will always have a zero result (used for initial high value)
