@@ -76,11 +76,49 @@ class NumberPairingProblem {
         var overallBestResult: NumberPairing = initialHighValue
         var bestResults = [NumberPairing]()
         var otherResults = [NumberPairing]()
-//        func getHighestResultOfSequence(from lowValue: Double, to highValue: Double, by precision: Double) -> NumberPairing {
-//            var bestResultFromSequence: NumberPairing = initialHighValue
-//            var bestResultsFromSequence = [NumberPairing]()
-//
-//        }
+        func getHighestResultOfSequence(from lowValue: Double, to highValue: Double, by precision: Double) -> [NumberPairing] {
+            var bestResultFromSequence: NumberPairing = initialHighValue
+            var bestResultsFromSequence = [NumberPairing]()
+            var otherResultsFromSequence = [NumberPairing]()
+            let searchRange: StrideThrough<Double> = stride(from: lowValue, through: highValue, by: precision)
+            for number in searchRange {
+                let thisResult = NumberPairing(oneNumberIs: number, addingUpTo: sumOfNumberPairing)
+                if thisResult > bestResultFromSequence {
+                    bestResultFromSequence = thisResult
+                    for result in bestResultsFromSequence {
+                        otherResultsFromSequence.append(result)
+                    }
+                    bestResultsFromSequence.removeAll()
+                    bestResultsFromSequence.append(thisResult)
+                } else if thisResult == bestResultFromSequence {
+                    bestResultsFromSequence.append(thisResult)
+                } else {
+                    otherResultsFromSequence.append(thisResult)
+                }
+            }
+            if bestResultFromSequence > overallBestResult {
+                let bestFromSequence: Double = bestResultFromSequence.firstNumber
+                // New precision is current precision / 2
+                let newPrecision: Double = precision / 2
+                // New start is .firstNumber - (current precision / 2) of best result NumberPairing
+                var newLowValue = bestFromSequence - newPrecision
+                if newLowValue < lowerBounds {
+                    // If new start is lower than lower bounds, snap it to lower bounds
+                    newLowValue = lowerBounds
+                }
+                // New end is .firstNumber + (current precision / 2) of best result NumberPairing
+                var newHighValue = bestFromSequence + newPrecision
+                if newHighValue < upperBounds {
+                    // If new end is higher than upper bounds, snap it to upper bounds
+                    newHighValue = upperBounds
+                }
+                // Call recusive function again with narrower range as defined above
+                return getHighestResultOfSequence(from: newLowValue, to: newHighValue, by: newPrecision)
+            } else {
+                // Return the current overall result
+                return bestResults
+            }
+        }
         
         // Psudocode...
         // ------------------------------------------
