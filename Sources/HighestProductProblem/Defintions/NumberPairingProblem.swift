@@ -68,112 +68,133 @@ class NumberPairingProblem {
     
     // Methods --------------------------------------------------------------- /
     
-    // TODO: This will be updated to be a recursive method
+    /**
+      * This method is called during initialization to get the results of the problem
+      * Returns a tuple with the best result, an array of best result pairings and an array of other top pairings (sorted)
+      * These values will be accessed by public getter properties
+      */
     private func getResults() -> (Double, [NumberPairing], [NumberPairing]) {
+        
+        // This is a NumberPairing instance that will always have a result of 0
+        // We will use this as the initial high NumberPairing to beat
         let initialHighValue = NumberPairing(oneNumberIs: 0, addingUpTo: sumOfNumberPairing)
+        
+        // These constants for lower and upper bounds set the boudries for numbers in the number pairing
+        // We will use these to ensure we don't get a NumberPairing with a number outside of these bounds
         let lowerBounds: Double = 0
         let upperBounds: Double = sumOfNumberPairing / 2
+        
+        // These variable will hold the current overall best result that the recursive function will compare to and set as needed
+        // At the end, these values will be returned in a tuple
         var overallBestResult: NumberPairing = initialHighValue
         var bestResults = [NumberPairing]()
         var otherResults = [NumberPairing]()
-        func getHighestResultOfSequence(from lowValue: Double, to highValue: Double, by precision: Double) -> [NumberPairing] {
+        
+        // This is a failsafe. Hopefully, we end recursion before we get here, but just in case, it sets a limit on recursion
+        var runCount = 0
+        var maxRuns = 40
+        
+        // This is a recursive function that will start with low precision, look for the max value,
+        // then continue looking for higher max values (at a higher preceision) around that max value.
+        // When further recursion no longer finds a better value, recursion ends (as the max value has been found)
+        func getHighestResultOfSequence(from lowValue: Double, to highValue: Double, by precision: Double) -> Void {
+            
+            // If we hit the max run count, we will return and stop recursion
+            guard runCount < maxRuns else { return }
+            runCount += 1
+            
+            // We will set three local variables that will be for each recursive run... these will be compared to the overall variables for the method
             var bestResultFromSequence: NumberPairing = initialHighValue
             var bestResultsFromSequence = [NumberPairing]()
             var otherResultsFromSequence = [NumberPairing]()
+            
+            // Set the search range and loop through each value in it
             let searchRange: StrideThrough<Double> = stride(from: lowValue, through: highValue, by: precision)
             for number in searchRange {
+                
+                // Create a new NumberPairing to evaluate
                 let thisResult = NumberPairing(oneNumberIs: number, addingUpTo: sumOfNumberPairing)
                 if thisResult > bestResultFromSequence {
+                    // If the new Result is better than any other in the sequence, it's the new max
+                    // We'll set it to the best in sequence and move and previous best results to the other results array
+                    // Then add the new result to the best results array
                     bestResultFromSequence = thisResult
                     for result in bestResultsFromSequence {
-                        otherResultsFromSequence.append(result)
+                        if (result != initialHighValue) {
+                            otherResultsFromSequence.append(result)
+                        }
                     }
                     bestResultsFromSequence.removeAll()
                     bestResultsFromSequence.append(thisResult)
+                    
                 } else if thisResult == bestResultFromSequence {
+                    
+                    // If we found a NumberPairing that matches, but doesn't exceed, the existing best, we'll add it to the best results array
                     bestResultsFromSequence.append(thisResult)
+                    
                 } else {
+                    
+                    // Else, we'll just add it to the other results array
                     otherResultsFromSequence.append(thisResult)
+                    
                 }
             }
+            
             if bestResultFromSequence > overallBestResult {
-                let bestFromSequence: Double = bestResultFromSequence.firstNumber
-                // New precision is current precision / 2
+                // In this case, the sequence produced a higher result than the previous, so we'll set it to the new overall best
+                // We'll also move the previous best results from the best results array to the other results array
+                // and add the new best results to the best results array
+                overallBestResult = bestResultFromSequence
+                for result in bestResultsFromSequence {
+                    if (result != initialHighValue) {
+                        otherResults.append(result)
+                    }
+                }
+                bestResults.removeAll()
+                for result in bestResultsFromSequence {
+                    bestResults.append(result)
+                }
+                for result in otherResultsFromSequence {
+                    otherResults.append(result)
+                }
+                
+                // This finds what the first number was from the best result. This the number we'll target when call the function again
+                let bestNumberFromSequence: Double = bestResultFromSequence.firstNumber
+                // We will run the function again with twice the precision...
                 let newPrecision: Double = precision / 2
-                // New start is .firstNumber - (current precision / 2) of best result NumberPairing
-                var newLowValue = bestFromSequence - newPrecision
+                // ... but we'll look in a smaller range. The new result will be the best number from the sequence minus the new precision
+                var newLowValue = bestNumberFromSequence - newPrecision
                 if newLowValue < lowerBounds {
                     // If new start is lower than lower bounds, snap it to lower bounds
                     newLowValue = lowerBounds
                 }
-                // New end is .firstNumber + (current precision / 2) of best result NumberPairing
-                var newHighValue = bestFromSequence + newPrecision
+                // ... and new end is the best number in the sequence plus the new precision
+                var newHighValue = bestNumberFromSequence + newPrecision
                 if newHighValue < upperBounds {
                     // If new end is higher than upper bounds, snap it to upper bounds
                     newHighValue = upperBounds
                 }
-                // Call recusive function again with narrower range as defined above
+                
+                // Call recusive function again with narrower range as defined above (but higher precision)
                 return getHighestResultOfSequence(from: newLowValue, to: newHighValue, by: newPrecision)
+                
             } else {
-                // Return the current overall result
-                return bestResults
+                
+                // When the best result from the sequence is lower or equal to the overall result, we found the max and can stop
+                return
+                
             }
         }
         
-        // Psudocode...
-        // ------------------------------------------
-        // Define a new NumberPairing that will always have a zero result (used for initial high value)
-        // Define variable to hold best result as NumberPairing (init with NumberPairing with zero value)
-        // Define array holding best results
-        // Define array holding other results
-        // Define lower bounds and upper bounds constants to hold initial 0.0 and sumOfNumberPairing / 2 (these will be our accetable bounds... we need to check that nothing go outside these bounds when refining)
-        // Start recusive function starting from 0.0 to sumOfNumberPairing / 2 by sumOfNumberPairing / 2
-            // Define variable to hold local best result as NumberPairing (init with NumberPairing with zero value)
-            // Define array holding local best results
-            // For each in range...
-                // Make new NumberPairing instance
-                // If there is a NumberPairing:
-                    // If better than local best result
-                        // Set to variable holding best result
-                        // Clear best result array
-                        // Add to array of best results
-                    // If equal to local best result:
-                        // Add to array of best results
-                    // Else:
-                        // Add to array of other results
-                // If local best result is greater than overall best result
-                    // New start is .firstNumber - (current precision / 2) of best result NumberPairing
-                    // If new start is lower than lower bounds, snap it to lower bounds
-                    // New end is .firstNumber + (current precision / 2) of best result NumberPairing
-                    // If new end is higher than upper bounds, snap it to upper bounds
-                    // New precision is current precision / 2
-                    // Call recusive function again with narrower range as defined above
-                // Else
-                    // Return the current overall result
+        // Call the recursive function defined above
+        getHighestResultOfSequence(from: lowerBounds, to: upperBounds, by: sumOfNumberPairing / 4)
         
-        
-        let precision = 0.1
-        var searchRange: StrideThrough<Double> {
-            return stride(from: 0.0, through: sumOfNumberPairing / 2, by: precision)
-        }
-        var bestResult: Double = 0
-        var winnerList: Array<NumberPairing> = []
-        var otherList: Array<NumberPairing> = []
-        for number in searchRange {
-            let thisResult = NumberPairing(oneNumberIs: number, addingUpTo: sumOfNumberPairing)
-            if thisResult.result > bestResult {
-                bestResult = thisResult.result
-                winnerList.removeAll()
-                winnerList.append(thisResult)
-            } else if thisResult.result == bestResult {
-                winnerList.append(thisResult)
-            } else {
-                otherList.append(thisResult)
-            }
-        }
-        let othersSorted = otherList.sorted(by: {$0.result > $1.result})
-        return (bestResult, winnerList, othersSorted)
+        // Sort the other results array
+        let othersSorted = otherResults.sorted(by: {$0.result > $1.result})
+        // Return the tuple
+        return (overallBestResult.result, bestResults, othersSorted)
     }
+    
     // Prints all results
     func printAllResults() -> Void {
         print(twoNumbersProblem.introString)
