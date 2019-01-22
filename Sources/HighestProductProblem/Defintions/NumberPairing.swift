@@ -12,7 +12,7 @@ import Foundation
  * A structure that stores two numbers that sum to a given amount.
  * Finds the product, the difference and the result of muliplying the difference and the product.
  */
-struct NumberPairing: Equatable, Comparable {
+struct NumberPairing: Equatable, Comparable, Hashable {
     private var storedNumber: Double
     let sumOfNumbers: Double
     var firstNumber: Double {
@@ -41,6 +41,10 @@ struct NumberPairing: Equatable, Comparable {
         return product * difference
     }
     
+    var hash: Double {
+        return storedNumber + sumOfNumbers + result
+    }
+    
     // Initializers ---------------------------------------------------------- /
     
     init(oneNumberIs oneNumber: Double, addingUpTo sumOfNumbers: Double) {
@@ -56,10 +60,10 @@ struct NumberPairing: Equatable, Comparable {
     
     // Creates a long report with both numbers, the product, difference and the result
     func longReport() -> String {
-        let firstRounded = roundNumberToString(from: firstNumber)
-        let secondRounded = roundNumberToString(from: secondNumber)
-        let productRounded = roundNumberToString(from: product)
-        let differnceRounded = roundNumberToString(from: difference)
+        let firstRounded = roundNumberToString(from: firstNumber, withPrecision: 100_000)
+        let secondRounded = roundNumberToString(from: secondNumber, withPrecision: 100_000)
+        let productRounded = roundNumberToString(from: product, withPrecision: 100_000)
+        let differnceRounded = roundNumberToString(from: difference, withPrecision: 100_000)
         let resultRounded = roundNumberToString(from: result, withPrecision: 100_000)
         return """
             Numbers: \(firstRounded) and \(secondRounded)
@@ -73,8 +77,8 @@ struct NumberPairing: Equatable, Comparable {
     
     // Creates a short report with both numbers and the result
     func shortReport() -> String {
-        let firstRounded = roundNumberToString(from: firstNumber)
-        let secondRounded = roundNumberToString(from: secondNumber)
+        let firstRounded = roundNumberToString(from: firstNumber, withPrecision: 100_000)
+        let secondRounded = roundNumberToString(from: secondNumber, withPrecision: 100_000)
         let resultRounded = roundNumberToString(from: result, withPrecision: 100_000)
         return "\(firstRounded) and \(secondRounded) -> \(resultRounded)"
     }

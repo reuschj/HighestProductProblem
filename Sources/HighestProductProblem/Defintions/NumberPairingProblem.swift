@@ -18,7 +18,7 @@ class NumberPairingProblem {
         return "Problem:\nFind two numbers that add up to \(roundNumberToString(from: sumOfNumberPairing)), such that the product multiplied by the difference produces the largest possible value.\n"
     }
     // Private propety to store results
-    private var results: (Double, [NumberPairing], [NumberPairing])!
+    private var results: (Double, Set<NumberPairing>, [NumberPairing])!
     // Accesses best result
     var bestResult: Double {
         return results.0
@@ -28,7 +28,7 @@ class NumberPairingProblem {
         return "Best Result:\n\(results.0)\n\(lineMedium)\n"
     }
     // Acesses an array of winning number pairings
-    var bestNumberPairings: [NumberPairing] {
+    var bestNumberPairings: Set<NumberPairing> {
         return results.1
     }
     // Acesses an array of winning number pairings and outputs as formatted string report
@@ -73,7 +73,7 @@ class NumberPairingProblem {
       * Returns a tuple with the best result, an array of best result pairings and an array of other top pairings (sorted)
       * These values will be accessed by public getter properties
       */
-    private func getResults() -> (Double, [NumberPairing], [NumberPairing]) {
+    private func getResults() -> (Double, Set<NumberPairing>, [NumberPairing]) {
         
         // This is a NumberPairing instance that will always have a result of 0
         // We will use this as the initial high NumberPairing to beat
@@ -87,8 +87,8 @@ class NumberPairingProblem {
         // These variable will hold the current overall best result that the recursive function will compare to and set as needed
         // At the end, these values will be returned in a tuple
         var overallBestResult: NumberPairing = initialHighValue
-        var bestResults = [NumberPairing]()
-        var otherResults = [NumberPairing]()
+        var bestResults = Set<NumberPairing>()
+        var otherResults = Set<NumberPairing>()
         
         // This is a failsafe. Hopefully, we end recursion before we get here, but just in case, it sets a limit on recursion
         var runCount = 0
@@ -105,8 +105,8 @@ class NumberPairingProblem {
             
             // We will set three local variables that will be for each recursive run... these will be compared to the overall variables for the method
             var bestResultFromSequence: NumberPairing = initialHighValue
-            var bestResultsFromSequence = [NumberPairing]()
-            var otherResultsFromSequence = [NumberPairing]()
+            var bestResultsFromSequence = Set<NumberPairing>()
+            var otherResultsFromSequence = Set<NumberPairing>()
             
             // Set the search range and loop through each value in it
             let searchRange: StrideThrough<Double> = stride(from: lowValue, through: highValue, by: precision)
@@ -121,21 +121,21 @@ class NumberPairingProblem {
                     bestResultFromSequence = thisResult
                     for result in bestResultsFromSequence {
                         if (result != initialHighValue) {
-                            otherResultsFromSequence.append(result)
+                            otherResultsFromSequence.insert(result)
                         }
                     }
                     bestResultsFromSequence.removeAll()
-                    bestResultsFromSequence.append(thisResult)
+                    bestResultsFromSequence.insert(thisResult)
                     
                 } else if thisResult == bestResultFromSequence {
                     
                     // If we found a NumberPairing that matches, but doesn't exceed, the existing best, we'll add it to the best results array
-                    bestResultsFromSequence.append(thisResult)
+                    bestResultsFromSequence.insert(thisResult)
                     
                 } else {
                     
                     // Else, we'll just add it to the other results array
-                    otherResultsFromSequence.append(thisResult)
+                    otherResultsFromSequence.insert(thisResult)
                     
                 }
             }
@@ -145,32 +145,30 @@ class NumberPairingProblem {
                 // We'll also move the previous best results from the best results array to the other results array
                 // and add the new best results to the best results array
                 overallBestResult = bestResultFromSequence
-                for result in bestResultsFromSequence {
+                for result in bestResults {
                     if (result != initialHighValue) {
-                        otherResults.append(result)
+                        otherResults.insert(result)
                     }
                 }
                 bestResults.removeAll()
-                for result in bestResultsFromSequence {
-                    bestResults.append(result)
-                }
-                for result in otherResultsFromSequence {
-                    otherResults.append(result)
-                }
+                bestResults.formUnion(bestResultsFromSequence)
+                otherResults.formUnion(otherResultsFromSequence)
                 
                 // This finds what the first number was from the best result. This the number we'll target when call the function again
                 let bestNumberFromSequence: Double = bestResultFromSequence.firstNumber
                 // We will run the function again with twice the precision...
-                let newPrecision: Double = precision / 2
-                // ... but we'll look in a smaller range. The new result will be the best number from the sequence minus the new precision
-                var newLowValue = bestNumberFromSequence - newPrecision
+                let newPrecision: Double = precision / 4
+                // We'll look to half the current precision on either side of the best value
+                let marginToSearchAroundBestValue: Double = precision / 2
+                // ... but we'll look in a smaller range. The new result will be the best number from the sequence minus the shrink amount
+                var newLowValue = bestNumberFromSequence - marginToSearchAroundBestValue
                 if newLowValue < lowerBounds {
                     // If new start is lower than lower bounds, snap it to lower bounds
                     newLowValue = lowerBounds
                 }
-                // ... and new end is the best number in the sequence plus the new precision
-                var newHighValue = bestNumberFromSequence + newPrecision
-                if newHighValue < upperBounds {
+                // ... and new end is the best number in the sequence plus the shrink amount
+                var newHighValue = bestNumberFromSequence + marginToSearchAroundBestValue
+                if newHighValue > upperBounds {
                     // If new end is higher than upper bounds, snap it to upper bounds
                     newHighValue = upperBounds
                 }
@@ -189,8 +187,8 @@ class NumberPairingProblem {
         // Call the recursive function defined above
         getHighestResultOfSequence(from: lowerBounds, to: upperBounds, by: sumOfNumberPairing / 4)
         
-        // Sort the other results array
-        let othersSorted = otherResults.sorted(by: {$0.result > $1.result})
+        // Sort the other results
+        let othersSorted = Array(otherResults).sorted(by: {$0.result > $1.result})
         // Return the tuple
         return (overallBestResult.result, bestResults, othersSorted)
     }
