@@ -11,6 +11,9 @@ import Foundation
 // The default version of this problem is two numbers that add to 8
 let defaultSum: Double = 8
 
+// The minimum level of precision we care about... beyond this point, we'll consider values equal
+let minimumPrecision = 0.0000000001
+
 // Lines of various length
 fileprivate let lineChar = "-"
 fileprivate let lineBaseLength = 9

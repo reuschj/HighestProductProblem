@@ -49,21 +49,23 @@ class NumberPairingProblem {
         let allOtherResults = results.2
         var output = "Other Top Results:"
         let maxResults = allOtherResults.count > 10 ? 10 : allOtherResults.count
-        for index in 0 ... maxResults {
+        for index in 0 ..< maxResults {
             output += "\n\(allOtherResults[index].shortReport())"
         }
-        output += "\n\u{2026}\n"
+        if maxResults < allOtherResults.count {
+            output += "\n\u{2026}\n"
+        }
         return output
     }
     
     // Initializers ---------------------------------------------------------- /
     
-    init(addingmaxResults initialSum: Double) {
+    init(addingMaxResults initialSum: Double) {
         self.sumOfNumberPairing = initialSum
         self.results = self.getResults()
     }
     convenience init() {
-        self.init(addingmaxResults: 8)
+        self.init(addingMaxResults: 8)
     }
     
     // Methods --------------------------------------------------------------- /
@@ -108,6 +110,11 @@ class NumberPairingProblem {
             var bestResultsFromSequence = Set<NumberPairing>()
             var otherResultsFromSequence = Set<NumberPairing>()
             
+            // Closure to determine if we can add to the other sequence
+            let canBeAddedToOther: (NumberPairing) -> Bool = { (pairing) in
+                return pairing != initialHighValue && precision >= 0.01
+            }
+            
             // Set the search range and loop through each value in it
             let searchRange: StrideThrough<Double> = stride(from: lowValue, through: highValue, by: precision)
             for number in searchRange {
@@ -120,7 +127,7 @@ class NumberPairingProblem {
                     // Then add the new result to the best results array
                     bestResultFromSequence = thisResult
                     for result in bestResultsFromSequence {
-                        if (result != initialHighValue) {
+                        if (canBeAddedToOther(result)) {
                             otherResultsFromSequence.insert(result)
                         }
                     }
@@ -132,7 +139,7 @@ class NumberPairingProblem {
                     // If we found a NumberPairing that matches, but doesn't exceed, the existing best, we'll add it to the best results array
                     bestResultsFromSequence.insert(thisResult)
                     
-                } else {
+                } else if canBeAddedToOther(thisResult) {
                     
                     // Else, we'll just add it to the other results array
                     otherResultsFromSequence.insert(thisResult)
@@ -140,48 +147,45 @@ class NumberPairingProblem {
                 }
             }
             
-            if bestResultFromSequence > overallBestResult {
-                // In this case, the sequence produced a higher result than the previous, so we'll set it to the new overall best
-                // We'll also move the previous best results from the best results array to the other results array
-                // and add the new best results to the best results array
-                overallBestResult = bestResultFromSequence
-                for result in bestResults {
-                    if (result != initialHighValue) {
-                        otherResults.insert(result)
-                    }
+            // When the best result from the sequence is lower or equal to the overall result (or close enough), we found the max and can stop
+            let conditionToEndRecursion = bestResultFromSequence <= overallBestResult || bestResultFromSequence.isEquivalentTo(overallBestResult)
+            if conditionToEndRecursion { return }
+            
+            // In this case, the sequence produced a higher result than the previous, so we'll set it to the new overall best
+            // We'll also move the previous best results from the best results array to the other results array
+            // and add the new best results to the best results array
+            overallBestResult = bestResultFromSequence
+            for result in bestResults {
+                if (canBeAddedToOther(result)) {
+                    otherResults.insert(result)
                 }
-                bestResults.removeAll()
-                bestResults.formUnion(bestResultsFromSequence)
-                otherResults.formUnion(otherResultsFromSequence)
-                
-                // This finds what the first number was from the best result. This the number we'll target when call the function again
-                let bestNumberFromSequence: Double = bestResultFromSequence.firstNumber
-                // We will run the function again with twice the precision...
-                let newPrecision: Double = precision / 4
-                // We'll look to half the current precision on either side of the best value
-                let marginToSearchAroundBestValue: Double = precision / 2
-                // ... but we'll look in a smaller range. The new result will be the best number from the sequence minus the shrink amount
-                var newLowValue = bestNumberFromSequence - marginToSearchAroundBestValue
-                if newLowValue < lowerBounds {
-                    // If new start is lower than lower bounds, snap it to lower bounds
-                    newLowValue = lowerBounds
-                }
-                // ... and new end is the best number in the sequence plus the shrink amount
-                var newHighValue = bestNumberFromSequence + marginToSearchAroundBestValue
-                if newHighValue > upperBounds {
-                    // If new end is higher than upper bounds, snap it to upper bounds
-                    newHighValue = upperBounds
-                }
-                
-                // Call recusive function again with narrower range as defined above (but higher precision)
-                return getHighestResultOfSequence(from: newLowValue, to: newHighValue, by: newPrecision)
-                
-            } else {
-                
-                // When the best result from the sequence is lower or equal to the overall result, we found the max and can stop
-                return
-                
             }
+            bestResults.removeAll()
+            bestResults.formUnion(bestResultsFromSequence)
+            otherResults.formUnion(otherResultsFromSequence)
+            
+            // This finds what the first number was from the best result. This the number we'll target when call the function again
+            let bestNumberFromSequence: Double = bestResultFromSequence.firstNumber
+            // We will run the function again with more precision...
+            let newPrecision: Double = precision / Double(runCount * 4)
+            // We'll look to half the current precision on either side of the best value
+            let marginToSearchAroundBestValue: Double = precision / 2
+            // ... but we'll look in a smaller range. The new result will be the best number from the sequence minus the shrink amount
+            var newLowValue = bestNumberFromSequence - marginToSearchAroundBestValue
+            if newLowValue < lowerBounds {
+                // If new start is lower than lower bounds, snap it to lower bounds
+                newLowValue = lowerBounds
+            }
+            // ... and new end is the best number in the sequence plus the shrink amount
+            var newHighValue = bestNumberFromSequence + marginToSearchAroundBestValue
+            if newHighValue > upperBounds {
+                // If new end is higher than upper bounds, snap it to upper bounds
+                newHighValue = upperBounds
+            }
+            
+            // Call recusive function again with narrower range as defined above (but higher precision)
+            getHighestResultOfSequence(from: newLowValue, to: newHighValue, by: newPrecision)
+            
         }
         
         // Call the recursive function defined above

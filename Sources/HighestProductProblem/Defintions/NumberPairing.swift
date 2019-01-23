@@ -58,6 +58,17 @@ struct NumberPairing: Equatable, Comparable, Hashable {
     
     // Methods --------------------------------------------------------------- /
     
+    // Finds the differnce between two NumberPairings
+    func difference(_ anotherNumberPairing: NumberPairing) -> Double {
+        return abs(result - anotherNumberPairing.result)
+    }
+    
+    // This will test if two results are close enough to be considered equal to each other
+    // The two NumberPairings may still be !=
+    func isEquivalentTo(_ anotherNumberPairing: NumberPairing) -> Bool {
+        return self.difference(anotherNumberPairing) < minimumPrecision
+    }
+    
     // Creates a long report with both numbers, the product, difference and the result
     func longReport() -> String {
         let firstRounded = roundNumberToString(from: firstNumber, withPrecision: 100_000)
