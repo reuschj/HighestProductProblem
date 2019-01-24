@@ -9,8 +9,15 @@
 import Foundation
 
 
-let twoNumbersProblem = NumberPairingProblem(addingMaxResults: 8)
+
+// Get user input from command line, prompt or default
+let sumFromCommandLineInput = NumberPairingProblem.getUserInput()
+
+// Get the result and print
+let twoNumbersProblem = NumberPairingProblem(addingUpTo: sumFromCommandLineInput)
 twoNumbersProblem.printAllResults()
 
-// TODO: Allow to accept input from terminal
-// TODO: With 8 as input, should get to 49.26722297 as answer... Need to write test case
+// To do:
+// -----------------------------------
+// TODO: Make other top result collection optional
+// TODO: Write unit test: With 8 as input, should get to 49.26722297 as top result

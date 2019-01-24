@@ -60,12 +60,12 @@ class NumberPairingProblem {
     
     // Initializers ---------------------------------------------------------- /
     
-    init(addingMaxResults initialSum: Double) {
+    init(addingUpTo initialSum: Double) {
         self.sumOfNumberPairing = initialSum
         self.results = self.getResults()
     }
     convenience init() {
-        self.init(addingMaxResults: 8)
+        self.init(addingUpTo: 8)
     }
     
     // Methods --------------------------------------------------------------- /
@@ -199,9 +199,32 @@ class NumberPairingProblem {
     
     // Prints all results
     func printAllResults() -> Void {
-        print(twoNumbersProblem.introString)
-        print(twoNumbersProblem.bestResultReport)
-        print(twoNumbersProblem.bestNumberPairingsReport)
-        print(twoNumbersProblem.otherNumberPairingsReport)
+        print(self.introString)
+        print(self.bestResultReport)
+        print(self.bestNumberPairingsReport)
+        print(self.otherNumberPairingsReport)
+    }
+    
+    // Gets user input from command line or input (or uses default)
+    static func getUserInput() -> Double {
+        
+        // Pulls argument from commandline if available or uses default
+        let sumFromCommandLineInput: Double? = CommandLine.arguments.count > 1 ? Double(CommandLine.arguments[1]) : nil;
+        
+        var userInput: Double?
+        if let possibleArgument = sumFromCommandLineInput {
+            // If an arguement was entered, assign it as user input
+            userInput = possibleArgument
+        } else {
+            // Else prompt the user for input
+            print("Enter a positive number and press return (Default: \(defaultSum)):")
+            let getInput = readLine()
+            if let possibleInput = getInput {
+                // If input exits attempt to convert to a double
+                userInput = Double(possibleInput)
+            }
+        }
+        // Return user input (if it exists) or use default
+        return abs(userInput ?? defaultSum)
     }
 }
