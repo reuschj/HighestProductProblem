@@ -32,7 +32,8 @@ or
 
 ## New
 - New recursive method to find more accurate answer
-- New ability to take user input from command line or input promt
+- New ability to take user input from command line or input prompt
+- Collecting and displaying other results is now optional
 
 ## To Do
 - Write unit tests:
