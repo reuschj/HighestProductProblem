@@ -1,5 +1,6 @@
 import XCTest
 import class Foundation.Bundle
+@testable import HighestProductProblem
 
 final class HighestProductProblemTests: XCTestCase {
     func testExample() throws {
@@ -27,6 +28,10 @@ final class HighestProductProblemTests: XCTestCase {
         let output = String(data: data, encoding: .utf8)
 
         XCTAssertEqual(output, "Hello, world!\n")
+    }
+    
+    fun resultForEightIsCorrect() {
+        
     }
 
     /// Returns path to the built products directory.

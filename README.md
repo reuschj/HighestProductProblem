@@ -21,12 +21,19 @@ Optionally, you can add the number as a second argument:
 
 This runs the program with 16 as the number to use.
 
+By default, the program displays up to 10 other top results (sorted high to low). You can pass `no` or `false` as an optional second parameter in the command line to opt out of collecting other results.
+
+`$ swift run HighestProductProblem 8 no`
+
+or
+
+`$ swift run HighestProductProblem 8 false`
+
 
 ## New
 - New recursive method to find more accurate answer
 - New ability to take user input from command line or input promt
 
 ## To Do
-- Make other top result collection optional.
 - Write unit tests:
     - With 8 as input, 49.26722297 should be the top result.
