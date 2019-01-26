@@ -34,7 +34,9 @@ or
 - New recursive method to find more accurate answer
 - New ability to take user input from command line or input prompt
 - Collecting and displaying other results is now optional
+- Added unit tests
+
 
 ## To Do
-- Write unit tests:
-    - With 8 as input, 49.26722297 should be the top result.
+- Write more unit tests.
+- Improve number formatting for printout (low priority)

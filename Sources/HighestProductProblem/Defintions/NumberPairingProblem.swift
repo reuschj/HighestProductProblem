@@ -14,6 +14,7 @@ import Foundation
   */
 open class NumberPairingProblem {
     let sumOfNumberPairing: Double
+    var runsToSolve: Int
     var introString: String {
         return "Problem:\nFind two numbers that add up to \(roundNumberToString(from: sumOfNumberPairing)), such that the product multiplied by the difference produces the largest possible value.\n"
     }
@@ -62,6 +63,7 @@ open class NumberPairingProblem {
     
     init(addingUpTo initialSum: Double, withOtherResults collectOtherResults: Bool = true) {
         self.sumOfNumberPairing = initialSum
+        self.runsToSolve = 0
         self.results = self.getResults(withOtherResults: collectOtherResults)
     }
     convenience init() {
@@ -149,7 +151,10 @@ open class NumberPairingProblem {
             
             // When the best result from the sequence is lower or equal to the overall result (or close enough), we found the max and can stop
             let conditionToEndRecursion = bestResultFromSequence <= overallBestResult || bestResultFromSequence.isEquivalentTo(overallBestResult)
-            if conditionToEndRecursion { return }
+            if conditionToEndRecursion {
+                runsToSolve = runCount
+                return
+            }
             
             // In this case, the sequence produced a higher result than the previous, so we'll set it to the new overall best
             // We'll also move the previous best results from the best results array to the other results array

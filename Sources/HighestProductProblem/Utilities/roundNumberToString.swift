@@ -12,5 +12,5 @@ import Foundation
 // For example 16.0 -> "16" or 12.20 to "12.2"
 func roundNumberToString(from number: Double, withPrecision precision: Double = 1_000) -> String {
     let reduced = (number * precision).rounded() / precision
-    return reduced.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", reduced) : String(reduced)
+    return reduced.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%0.0f", reduced) : String(reduced)
 }

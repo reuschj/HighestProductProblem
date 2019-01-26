@@ -40,7 +40,6 @@ struct NumberPairing: Equatable, Comparable, Hashable {
     var result: Double {
         return product * difference
     }
-    
     var hash: Double {
         return storedNumber + sumOfNumbers + result
     }
