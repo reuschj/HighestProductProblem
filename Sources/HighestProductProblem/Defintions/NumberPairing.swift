@@ -105,12 +105,18 @@ struct NumberPairing: Equatable, Comparable, Hashable {
     
     // Method for checking equality
     static func == (lhs: NumberPairing, rhs: NumberPairing) -> Bool {
-        return lhs.storedNumber == rhs.storedNumber && lhs.sumOfNumbers == rhs.sumOfNumbers
+        let sumsAreEqual = lhs.sumOfNumbers == rhs.sumOfNumbers
+        let storedAreEqual = lhs.storedNumber == rhs.storedNumber
+        let storedIsEqualToInverse = lhs.storedNumber == rhs.secondNumber
+        return (sumsAreEqual && storedAreEqual) || (sumsAreEqual && storedIsEqualToInverse)
     }
     
     // Method for checking non-equality
     static func != (lhs: NumberPairing, rhs: NumberPairing) -> Bool {
-        return lhs.storedNumber != rhs.storedNumber || lhs.sumOfNumbers != rhs.sumOfNumbers
+        let sumsAreEqual = lhs.sumOfNumbers == rhs.sumOfNumbers
+        let storedAreNotEqual = lhs.storedNumber != rhs.storedNumber
+        let storedIsNotEqualToInverse = lhs.storedNumber != rhs.secondNumber
+        return !sumsAreEqual || (sumsAreEqual && storedAreNotEqual) || (sumsAreEqual && storedIsNotEqualToInverse)
     }
     
     // Method for comarison
