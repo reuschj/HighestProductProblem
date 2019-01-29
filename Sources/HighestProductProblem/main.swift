@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 // Get user input from command line, prompt or default
 let sumFromCommandLineInput = NumberPairingProblem.getUserInput()
 
