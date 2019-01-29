@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/HighestProductProblem/Defintions/NumberPairingProblem.swift"
+            timestampString = "570416603.084187"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "132"
+            endingLineNumber = "132"
+            landmarkName = "getHighestResultOfSequence(from:to:by:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/HighestProductProblem/Defintions/NumberPairingProblem.swift"
+            timestampString = "570416603.084581"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "getHighestResultOfSequence(from:to:by:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/HighestProductProblem/Defintions/NumberPairingProblem.swift"
+            timestampString = "570416603.084643"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "getResults(withOtherResults:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "HighestProductProblem.NumberPairingProblem.(getResults in _6982D06C21B64320ECCBC5EEE8FCAD84)() -&gt; (Swift.Double, Swift.Set&lt;HighestProductProblem.NumberPairing&gt;, Swift.Array&lt;HighestProductProblem.NumberPairing&gt;)"
+                  moduleName = "HighestProductProblem"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/reuschj/Dropbox/Development/iOS/Projects/HighestProductProblem/Sources/HighestProductProblem/Defintions/NumberPairingProblem.swift"
+                  timestampString = "569911648.307031"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "833">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (HighestProductProblem.NumberPairing, HighestProductProblem.NumberPairing) -&gt; Swift.Bool in HighestProductProblem.NumberPairingProblem.(getResults in _6982D06C21B64320ECCBC5EEE8FCAD84)() -&gt; (Swift.Double, Swift.Set&lt;HighestProductProblem.NumberPairing&gt;, Swift.Array&lt;HighestProductProblem.NumberPairing&gt;)"
+                  moduleName = "HighestProductProblem"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/reuschj/Dropbox/Development/iOS/Projects/HighestProductProblem/Sources/HighestProductProblem/Defintions/NumberPairingProblem.swift"
+                  timestampString = "569911648.309321"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/HighestProductProblem/Defintions/NumberPairingProblem.swift"
+            timestampString = "570416603.084693"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
+            landmarkName = "getResults(withOtherResults:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "HigestProductProblemUnitTests/HigestProductProblemUnitTests.swift"
+            timestampString = "570416603.084777"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "HigestProductProblemUnitTests"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
