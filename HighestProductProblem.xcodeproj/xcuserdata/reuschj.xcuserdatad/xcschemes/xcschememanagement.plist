@@ -4,15 +4,10 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>HigestProductProblemUnitTests.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>1</integer>
-		</dict>
 		<key>HighestProductProblem.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>HighestProductProblemTests 2.xcscheme_^#shared#^_</key>
 		<dict>
@@ -24,10 +19,28 @@
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
+		<key>HighestProductProblemUnitTests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
 		<key>NumberPairingProblemTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>A42E9A1121FC11A30012D232</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A4ED246421E5D3190017FD47</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

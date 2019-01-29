@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A4096CE921EC464A00F4D3F1 /* roundNumberToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4096CE821EC464A00F4D3F1 /* roundNumberToString.swift */; };
 		A41257EF21E7148D005D503A /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41257EE21E7148D005D503A /* constants.swift */; };
-		A42E9A1521FC11A30012D232 /* HigestProductProblemUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42E9A1421FC11A30012D232 /* HigestProductProblemUnitTests.swift */; };
+		A42E9A1521FC11A30012D232 /* HighestProductProblemUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42E9A1421FC11A30012D232 /* HighestProductProblemUnitTests.swift */; };
 		A42E9A1A21FC11DE0012D232 /* NumberPairingProblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CCF9C21E5E252005C9B1C /* NumberPairingProblem.swift */; };
 		A42E9A1B21FC11E20012D232 /* roundNumberToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4096CE821EC464A00F4D3F1 /* roundNumberToString.swift */; };
 		A42E9A1C21FC11E50012D232 /* NumberPairing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CCF9E21E5E252005C9B1C /* NumberPairing.swift */; };
@@ -40,7 +40,7 @@
 		A42CCF9D21E5E252005C9B1C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A42CCF9E21E5E252005C9B1C /* NumberPairing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPairing.swift; sourceTree = "<group>"; };
 		A42E9A1221FC11A30012D232 /* HigestProductProblemUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HigestProductProblemUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A42E9A1421FC11A30012D232 /* HigestProductProblemUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HigestProductProblemUnitTests.swift; sourceTree = "<group>"; };
+		A42E9A1421FC11A30012D232 /* HighestProductProblemUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighestProductProblemUnitTests.swift; sourceTree = "<group>"; };
 		A42E9A1621FC11A30012D232 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A42E9A1F21FD61DC0012D232 /* NumberPairingUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPairingUnitTests.swift; sourceTree = "<group>"; };
 		A431745421E5DE6F0074EEA6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -102,14 +102,22 @@
 			path = HighestProductProblem;
 			sourceTree = "<group>";
 		};
-		A42E9A1321FC11A30012D232 /* HigestProductProblemUnitTests */ = {
+		A42E9A1321FC11A30012D232 /* HighestProductProblemUnitTests */ = {
 			isa = PBXGroup;
 			children = (
 				A42E9A1F21FD61DC0012D232 /* NumberPairingUnitTests.swift */,
-				A42E9A1421FC11A30012D232 /* HigestProductProblemUnitTests.swift */,
+				A42E9A1421FC11A30012D232 /* HighestProductProblemUnitTests.swift */,
 				A42E9A1621FC11A30012D232 /* Info.plist */,
 			);
-			path = HigestProductProblemUnitTests;
+			path = HighestProductProblemUnitTests;
+			sourceTree = "<group>";
+		};
+		A47EE0FE2200203D004F0407 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				A42E9A1321FC11A30012D232 /* HighestProductProblemUnitTests */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		A4ED245C21E5D3190017FD47 = {
@@ -117,8 +125,8 @@
 			children = (
 				A42CCF9A21E5E240005C9B1C /* Sources */,
 				A431745621E5E0550074EEA6 /* Package.swift */,
+				A47EE0FE2200203D004F0407 /* Tests */,
 				A431745421E5DE6F0074EEA6 /* README.md */,
-				A42E9A1321FC11A30012D232 /* HigestProductProblemUnitTests */,
 				A4ED246621E5D3190017FD47 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -220,7 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A42E9A1521FC11A30012D232 /* HigestProductProblemUnitTests.swift in Sources */,
+				A42E9A1521FC11A30012D232 /* HighestProductProblemUnitTests.swift in Sources */,
 				A42E9A1C21FC11E50012D232 /* NumberPairing.swift in Sources */,
 				A42E9A1E21FC11F10012D232 /* main.swift in Sources */,
 				A42E9A1A21FC11DE0012D232 /* NumberPairingProblem.swift in Sources */,
@@ -251,13 +259,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C62HHAQ8W3;
-				INFOPLIST_FILE = HigestProductProblemUnitTests/Info.plist;
+				INFOPLIST_FILE = Tests/HighestProductProblemUnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = irisview.HigestProductProblemUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = irisview.HighestProductProblemUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -269,13 +277,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = C62HHAQ8W3;
-				INFOPLIST_FILE = HigestProductProblemUnitTests/Info.plist;
+				INFOPLIST_FILE = Tests/HighestProductProblemUnitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = irisview.HigestProductProblemUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = irisview.HighestProductProblemUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -401,6 +409,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C62HHAQ8W3;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/HighestProductProblemUnitTests/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};
@@ -411,6 +420,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C62HHAQ8W3;
+				INFOPLIST_FILE = "$(SRCROOT)/Tests/HighestProductProblemUnitTests/Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 			};

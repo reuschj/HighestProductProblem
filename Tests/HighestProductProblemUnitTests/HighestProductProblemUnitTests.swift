@@ -7,11 +7,12 @@
 //
 
 import XCTest
+@testable import HighestProductProblem
 
 let largeProblemSize: Double = 900
 let massiveProblemSize: Double = 9_000_000
 
-class HigestProductProblemUnitTests: XCTestCase {
+class HighestProductProblemUnitTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
