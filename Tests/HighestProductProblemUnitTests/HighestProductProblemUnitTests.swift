@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import class Foundation.Bundle
 @testable import HighestProductProblem
 
 let largeProblemSize: Double = 900
@@ -21,13 +22,13 @@ class HighestProductProblemUnitTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-    
+
     func printWithOtherResults(size: Double = 8) -> NumberPairingProblem {
         let testProblem = NumberPairingProblem(addingUpTo: size)
         testProblem.printAllResults()
         return testProblem
     }
-    
+
     func printWithoutOtherResults(size: Double = 8) -> NumberPairingProblem {
         let testProblem = NumberPairingProblem(addingUpTo: size, withOtherResults: false)
         testProblem.printAllResults()
@@ -43,7 +44,7 @@ class HighestProductProblemUnitTests: XCTestCase {
         let testAssumption = difference < marginOfError
         XCTAssert(testAssumption, "Test failed because difference was expected to be below \(marginOfError) and was \(difference)")
     }
-    
+
     func testThatRunCountIsUnderFourty() {
         let maxRunCount = 40
         let problem = self.printWithOtherResults(size: massiveProblemSize)
@@ -57,35 +58,52 @@ class HighestProductProblemUnitTests: XCTestCase {
             let _ = self.testResultForEightIsCorrect()
         }
     }
-    
+
     func testPerformanceOfStandardProblemWithOtherResults() {
         self.measure {
             let _ = self.printWithOtherResults()
         }
     }
-    
+
     func testPerformanceOfLargeProblemWithOtherResults() {
         self.measure {
             let _ = self.printWithOtherResults(size: largeProblemSize)
         }
     }
-    
+
     func testPerformanceOfLargeProblemWithoutOtherResults() {
         self.measure {
             let _ = self.printWithoutOtherResults(size: largeProblemSize)
         }
     }
-    
+
     func testPerformanceOfMassiveProblemWithOtherResults() {
         self.measure {
             let _ = self.printWithOtherResults(size: massiveProblemSize)
         }
     }
-    
+
     func testPerformanceOfMassiveProblemWithoutOtherResults() {
         self.measure {
             let _ = self.printWithoutOtherResults(size: massiveProblemSize)
         }
     }
+
+    /// Returns path to the built products directory.
+    var productsDirectory: URL {
+      #if os(macOS)
+        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
+            return bundle.bundleURL.deletingLastPathComponent()
+        }
+        fatalError("couldn't find the products directory")
+      #else
+        return Bundle.main.bundleURL
+      #endif
+    }
+
+    static var allTests = [
+        ("testResultForEightIsCorrect", testResultForEightIsCorrect),
+        ("testThatRunCountIsUnderFourty", testThatRunCountIsUnderFourty)
+    ]
 
 }
