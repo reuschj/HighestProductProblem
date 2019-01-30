@@ -6,9 +6,8 @@
 //  Copyright © 2019 Justin Reusch. All rights reserved.
 //
 
-import XCTest
-import class Foundation.Bundle
 @testable import HighestProductProblem
+import XCTest
 
 class NumberPairingUnitTests: XCTestCase {
 
@@ -46,18 +45,6 @@ class NumberPairingUnitTests: XCTestCase {
         self.measure {
             let _ = NumberPairing(oneNumberIs: 2, addingUpTo: 8)
         }
-    }
-
-    /// Returns path to the built products directory.
-    var productsDirectory: URL {
-      #if os(macOS)
-        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
-            return bundle.bundleURL.deletingLastPathComponent()
-        }
-        fatalError("couldn't find the products directory")
-      #else
-        return Bundle.main.bundleURL
-      #endif
     }
 
     static var allTests = [

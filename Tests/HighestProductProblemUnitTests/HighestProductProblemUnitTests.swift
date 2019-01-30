@@ -6,9 +6,8 @@
 //  Copyright © 2019 Justin Reusch. All rights reserved.
 //
 
-import XCTest
-import class Foundation.Bundle
 @testable import HighestProductProblem
+import XCTest
 
 let largeProblemSize: Double = 900
 let massiveProblemSize: Double = 9_000_000
@@ -36,7 +35,7 @@ class HighestProductProblemUnitTests: XCTestCase {
     }
 
     func testResultForEightIsCorrect() {
-        let testProblem = NumberPairingProblem(addingUpTo: 8.0, withOtherResults: true)
+        let testProblem = NumberPairingProblem(addingUpTo: 8, withOtherResults: true)
         let bestResult = testProblem.bestResult
         let expectedResult = 49.26722297
         let marginOfError = 0.00000001
@@ -87,18 +86,6 @@ class HighestProductProblemUnitTests: XCTestCase {
         self.measure {
             let _ = self.printWithoutOtherResults(size: massiveProblemSize)
         }
-    }
-
-    /// Returns path to the built products directory.
-    var productsDirectory: URL {
-      #if os(macOS)
-        for bundle in Bundle.allBundles where bundle.bundlePath.hasSuffix(".xctest") {
-            return bundle.bundleURL.deletingLastPathComponent()
-        }
-        fatalError("couldn't find the products directory")
-      #else
-        return Bundle.main.bundleURL
-      #endif
     }
 
     static var allTests = [

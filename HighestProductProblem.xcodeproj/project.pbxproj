@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		A4096CE921EC464A00F4D3F1 /* roundNumberToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4096CE821EC464A00F4D3F1 /* roundNumberToString.swift */; };
 		A41257EF21E7148D005D503A /* constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41257EE21E7148D005D503A /* constants.swift */; };
-		A4182D162201673900BD72BE /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4182D152201673900BD72BE /* XCTestManifests.swift */; };
-		A4182D182201674400BD72BE /* LinuxMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4182D172201674400BD72BE /* LinuxMain.swift */; };
+		A4182D1922016BB400BD72BE /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4182D152201673900BD72BE /* XCTestManifests.swift */; };
 		A42E9A1521FC11A30012D232 /* HighestProductProblemUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42E9A1421FC11A30012D232 /* HighestProductProblemUnitTests.swift */; };
 		A42E9A1A21FC11DE0012D232 /* NumberPairingProblem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42CCF9C21E5E252005C9B1C /* NumberPairingProblem.swift */; };
 		A42E9A1B21FC11E20012D232 /* roundNumberToString.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4096CE821EC464A00F4D3F1 /* roundNumberToString.swift */; };
@@ -39,7 +38,6 @@
 		A4096CE821EC464A00F4D3F1 /* roundNumberToString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roundNumberToString.swift; sourceTree = "<group>"; };
 		A41257EE21E7148D005D503A /* constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constants.swift; sourceTree = "<group>"; };
 		A4182D152201673900BD72BE /* XCTestManifests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
-		A4182D172201674400BD72BE /* LinuxMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinuxMain.swift; sourceTree = "<group>"; };
 		A42CCF9C21E5E252005C9B1C /* NumberPairingProblem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPairingProblem.swift; sourceTree = "<group>"; };
 		A42CCF9D21E5E252005C9B1C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A42CCF9E21E5E252005C9B1C /* NumberPairing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPairing.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 		A47EE0FE2200203D004F0407 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				A4182D172201674400BD72BE /* LinuxMain.swift */,
 				A42E9A1321FC11A30012D232 /* HighestProductProblemUnitTests */,
 			);
 			path = Tests;
@@ -239,6 +236,7 @@
 				A42E9A1E21FC11F10012D232 /* main.swift in Sources */,
 				A42E9A1A21FC11DE0012D232 /* NumberPairingProblem.swift in Sources */,
 				A42E9A1D21FC11ED0012D232 /* constants.swift in Sources */,
+				A4182D1922016BB400BD72BE /* XCTestManifests.swift in Sources */,
 				A42E9A1B21FC11E20012D232 /* roundNumberToString.swift in Sources */,
 				A42E9A2021FD61DC0012D232 /* NumberPairingUnitTests.swift in Sources */,
 			);
@@ -250,11 +248,9 @@
 			files = (
 				A4CFA26D21E5E48200D2D47A /* NumberPairing.swift in Sources */,
 				A4CFA26C21E5E47E00D2D47A /* main.swift in Sources */,
-				A4182D182201674400BD72BE /* LinuxMain.swift in Sources */,
 				A4096CE921EC464A00F4D3F1 /* roundNumberToString.swift in Sources */,
 				A4CFA26B21E5E47A00D2D47A /* NumberPairingProblem.swift in Sources */,
 				A41257EF21E7148D005D503A /* constants.swift in Sources */,
-				A4182D162201673900BD72BE /* XCTestManifests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
